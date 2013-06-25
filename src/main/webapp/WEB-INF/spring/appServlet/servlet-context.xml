@@ -21,6 +21,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	
+<!-- 	<bean id="CRP_ID_Bean" class="examplebean"> -->
+<!-- 	    <property name="crpIdBean" value="classpath:com/springAPITest/proV/service/impl/CRP_IDs.xls" /> -->
+<!-- 	</bean> -->
+	
 	<context:component-scan base-package="com.springAPITest.proV" />
 	
 	

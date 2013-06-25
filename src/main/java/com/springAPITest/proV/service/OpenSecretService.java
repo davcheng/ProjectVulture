@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.springAPITest.proV.HomeController;
+import com.springAPITest.proV.controllers.HomeController;
 import com.springAPITest.proV.service.data.OpenSecretResponse;
 
 

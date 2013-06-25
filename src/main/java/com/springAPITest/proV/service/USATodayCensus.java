@@ -5,13 +5,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.annotate.JsonRootName;
-import org.codehaus.jackson.map.DeserializationConfig.Feature;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
@@ -21,10 +18,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.springAPITest.proV.HomeController;
-import com.springAPITest.proV.service.data.OpenSecretResponse;
+import com.springAPITest.proV.controllers.HomeController;
 import com.springAPITest.proV.service.data.USATodayCensusResponse;
-import com.springAPITest.proV.service.data.WrapperUSATodayCensusResponse;
 
 @JsonRootName(value = "response")
 public class USATodayCensus {

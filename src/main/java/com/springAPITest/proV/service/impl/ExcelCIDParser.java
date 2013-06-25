@@ -12,17 +12,19 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 
 public class ExcelCIDParser {
 	private static final Logger logger = LoggerFactory.getLogger(ExcelCIDParser.class);
 	public static String lookupCandidateCID(String candidateName) throws IOException{
        try{
-    	   	String fileName = "/Users/awsmdavid/Desktop/CRP_IDs.xls";
+    	   	InputStream input = new ClassPathResource("CRP_IDs.xls").getInputStream();
+    	   	//String fileName = "/Users/awsmdavid/Desktop/CRP_IDs.xls";
 	        String cellContent = candidateName;
 	        //start on rownr 0, lookup colnr at index 0
 	        int rownr=0, colnr = 0;
 	
-	        InputStream input = new FileInputStream(fileName);
+	        //InputStream input = new FileInputStream(fileName);
 	
 	        HSSFWorkbook wb = new HSSFWorkbook(input);
 	        HSSFSheet sheet = wb.getSheetAt(0);

@@ -1,0 +1,33 @@
+
+body {
+	background-image:url('../img/greyBackground.png');
+}
+
+h2 
+{
+	color:black;
+	text-align: center;
+	font:30px Lucida Sans Unicode;
+	font-weight:bold;
+}
+
+.center
+{
+	margin:auto;
+	width:70%;
+	text-align: center;
+}
+
+.left
+{
+	margin:auto;
+	width:70%;
+	text-align: left;
+}
+.right
+{
+	margin:auto;
+	width:70%;
+	text-align: right;
+}
+

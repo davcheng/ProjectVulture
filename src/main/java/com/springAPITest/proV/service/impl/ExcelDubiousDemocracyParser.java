@@ -14,20 +14,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 
-public class ExcelCIDParser {
-	private static final Logger logger = LoggerFactory.getLogger(ExcelCIDParser.class);
-	public static String lookupCandidateCID(String candidateName) throws IOException{
+public class ExcelDubiousDemocracyParser {
+	private static final Logger logger = LoggerFactory.getLogger(ExcelDubiousDemocracyParser.class);
+	public static String retrieveDubiousData(String representativeName) throws IOException{
        try{
 //    	   TODO: remove hardcoded filename
-    	   	InputStream input = new ClassPathResource("CRP_IDs.xls").getInputStream();
-	        String cellContent = candidateName;
+    	   	InputStream input = new ClassPathResource("2010-Dubious-Democracy-Data.xlsx").getInputStream();
+	        String cellContent = representativeName;
+
 	        int rownr=0, colnr = 0;
-	
+	        
 	        HSSFWorkbook wb = new HSSFWorkbook(input);
 	        HSSFSheet sheet = wb.getSheetAt(0);
-	
+	        
 	        rownr = findRow(sheet, cellContent);
-	
+	        
 	        return  output(sheet, rownr, colnr);
 	      } 
        catch (final NullPointerException e){

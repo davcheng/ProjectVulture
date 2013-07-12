@@ -61,11 +61,8 @@ public class BroadbandMapCensus {
 
 				//unwrap response
 			    Map.Entry<String,JsonNode> statusWrapper = resps.next();	
-			    System.out.println("request wrapper "+statusWrapper.toString());
 			    Map.Entry<String,JsonNode> responseTimeWrapper = resps.next();
-			    System.out.println("response Time wrapper "+responseTimeWrapper.toString());
 			    Map.Entry<String,JsonNode> messageWrapper = resps.next();
-			    System.out.println("message wrapper "+messageWrapper.toString());
 			    Map.Entry<String,JsonNode> resultsWrapper = resps.next();
 			    //gives results=[{...
 			    System.out.println("results wrapper "+resultsWrapper.toString());		

@@ -29,6 +29,7 @@ import com.springAPITest.proV.service.data.BroadbandMapCensusResponse;
 import com.springAPITest.proV.service.data.OpenSecretResponse;
 import com.springAPITest.proV.service.data.USATodayCensusResponse;
 import com.springAPITest.proV.service.impl.ExcelCIDParser;
+import com.springAPITest.proV.service.impl.ExcelDubiousDemocracyParser;
 
 
 /**
@@ -106,8 +107,7 @@ public class HomeController {
 		  BroadbandMapCensusResponse broadbandResponse = BroadbandMapCensus.retrieveCensusData();
 		  System.out.println("age 20-34 "+broadbandResponse.getAgeBetween20to34());
 		  System.out.println("education bachelor or greater "+ broadbandResponse.getEducationBachelorOrGreater());
-		  
-  		
+		 
   		//USA TODAY Census Data
 		  USATodayCensusResponse usaTodayResponse = USATodayCensus.retrieveCensusData("01", "3");
 
@@ -142,15 +142,16 @@ public class HomeController {
 	   List<Tweet> tweetResults = result.getTweets();
 	   model.put("tweetResults", tweetResults);
 	     
-	   Iterator<Tweet> tweetIterator = tweetResults.iterator();
-	   System.out.println("list of tweets related to user");
-	   while (tweetIterator.hasNext()) {
-		   Tweet currentTweet = tweetIterator.next();
-		   System.out.println(currentTweet.getText());
-		   System.out.println(currentTweet.getCreatedAt());
-		}      
-
-	   System.out.println(result.getTweets());
+	   //print out tweets
+//	   Iterator<Tweet> tweetIterator = tweetResults.iterator();
+//	   System.out.println("list of tweets related to user");
+//	   while (tweetIterator.hasNext()) {
+//		   Tweet currentTweet = tweetIterator.next();
+//		   System.out.println(currentTweet.getText());
+//		   System.out.println(currentTweet.getCreatedAt());
+//		}      
+//
+//	   System.out.println(result.getTweets());
 			   
 	  // 
 	  //Open Secret Search 
@@ -161,9 +162,11 @@ public class HomeController {
 		  String retrievedCID = ExcelCIDParser.lookupCandidateCID(searchName.getCand_name()); 
 		  
 		  OpenSecretResponse candidateInfo = OpenSecretService.retrieveOpenSecretCandidateData(retrievedCID);
-	  
-		  System.out.println("the retrieved cid is: "+retrievedCID);
-		  System.out.println("Test openSecret POST "+candidateInfo.getCash_on_hand()); 
+
+//remove this is dubious democracy
+		  String retrievedWinningPct = ExcelDubiousDemocracyParser.retrieveDubiousData("*Ben Quayle"); 
+		  System.out.println("the retrieved winning pct!!!!!!: "+retrievedWinningPct);
+
 		  
 		  model.addAttribute("cid", candidateInfo.getCid());	
 		  model.addAttribute("cand_name", candidateInfo.getCand_name());	
@@ -181,9 +184,31 @@ public class HomeController {
 		  logger.info("Failed find candidate", e.toString());
 		  model.addAttribute("error_msg", "Could not retrieve data on candidate");	
 	  }
-   
+
+	  // 
+	  //Dubious Democracy
+	  //
+	   
+	  try{
+
+		  String retrievedWinningPct = ExcelDubiousDemocracyParser.retrieveDubiousData("*Ben Quayle"); 
+		  System.out.println("the retrieved winning pct!!!!!!: "+retrievedWinningPct);
+		 
+		  //model.addAttribute("debt", candidateInfo.getDebt());
+			
+		//	logger.info("candidate info is", candidateInfo);
+	      return "result";
+	  }
+	  catch (final NullPointerException e) {
+		  logger.info("Failed find candidate", e.toString());
+		  model.addAttribute("error_msg", "Could not retrieve data on candidate");	
+	  }
+
+	  
 	  return "search";
-   }
+
+  	
+  	}
 	
 	//currently unused
 	@RequestMapping(value = "/search", method = RequestMethod.GET)

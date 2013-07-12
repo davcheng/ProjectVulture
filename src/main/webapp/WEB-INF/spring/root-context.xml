@@ -14,9 +14,15 @@
 	    <property name="cidFileName" value="${projectVulture.excelCIDParser.fileName}" />
   	</bean>
 
+	<bean id="excelDubiousDemocracyParser" class="com.springAPITest.proV.service.impl.ExcelDubiousDemocracyParser">
+	    <property name="dubiousDemocracyFileName" value="${projectVulture.excelDubiousDemocracyParser.fileName}" />
+  	</bean>
+
 	<bean id="openSecretApiKey" class="com.springAPITest.proV.service.OpenSecretService">
 	    <property name="openSecretApiKey" value="${projectVulture.openSecretService.openSecretApiKey}" />
   	</bean>
+
+
 
 <!-- 	<bean id="twitterTemplate" class="com.springAPITest.proV.service.TwitterTemplateCreator"> -->
 <!-- 	    <property name="consumerKey" value="${projectVulture.twitterTemplate.consumerKey}" /> -->

@@ -90,6 +90,7 @@ public class HomeController {
 	}
 	
 	
+	
 	@Autowired
 	private TwitterRestService twitterService;
 	@Autowired
@@ -102,11 +103,9 @@ public class HomeController {
   			 ModelMap model) throws JsonParseException, JsonMappingException, IOException {
 		  
   		//BroadbandMap Census Data
-  	
 		  BroadbandMapCensusResponse broadbandResponse = BroadbandMapCensus.retrieveCensusData();
 		  System.out.println("age 20-34 "+broadbandResponse.getAgeBetween20to34());
 		  System.out.println("education bachelor or greater "+ broadbandResponse.getEducationBachelorOrGreater());
-		  
 		  
   		
   		//USA TODAY Census Data
@@ -153,7 +152,10 @@ public class HomeController {
 
 	   System.out.println(result.getTweets());
 			   
-	    
+	  // 
+	  //Open Secret Search 
+	  //
+	   
 	  try{
 
 		  String retrievedCID = ExcelCIDParser.lookupCandidateCID(searchName.getCand_name()); 

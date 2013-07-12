@@ -14,12 +14,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 
+
 public class ExcelCIDParser {
+	
+	private static String cidFileName;
+
+
 	private static final Logger logger = LoggerFactory.getLogger(ExcelCIDParser.class);
 	public static String lookupCandidateCID(String candidateName) throws IOException{
        try{
 //    	   TODO: remove hardcoded filename
-    	   	InputStream input = new ClassPathResource("CRP_IDs.xls").getInputStream();
+    	   System.out.println("spring injection test!!!!!!" + getCidFileName());
+    	   	InputStream input = new ClassPathResource(getCidFileName()).getInputStream();
 	        String cellContent = candidateName;
 	        int rownr=0, colnr = 0;
 	
@@ -58,4 +64,11 @@ public class ExcelCIDParser {
         return 0;
     }
 
+	public static String getCidFileName() {
+		return cidFileName;
+	}
+
+	public void setCidFileName(String cidFileName) {
+		this.cidFileName = cidFileName;
+	}
 }   

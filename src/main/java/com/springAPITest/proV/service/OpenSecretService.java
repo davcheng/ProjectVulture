@@ -25,18 +25,19 @@ import com.springAPITest.proV.service.data.OpenSecretResponse;
 public class OpenSecretService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
+	private static String openSecretApiKey;
+	
 	public static OpenSecretResponse retrieveOpenSecretCandidateData(String CID) throws JsonParseException, JsonMappingException, IOException{
 		//TODO: spring inject
-		String openSecretApiKey = "f5924b9bb849071f8f2ba2738a370f2b";
+
 
 		RestTemplate restTemplate = new RestTemplate();
 		try{
-			
+			System.out.println("TEST FOR APIKEY" + getOpenSecretApiKey());
 			//make rest call
 			Map<String, String> vars = new HashMap<String, String>();
 			vars.put("CID", CID);
-		    vars.put("apiKey", openSecretApiKey);
+		    vars.put("apiKey", getOpenSecretApiKey());
 		    String response = restTemplate.getForObject("http://www.opensecrets.org/api/?method=candSummary&output=json&cid={CID}&cycle=2012&apikey={apiKey}&ouput=json", String.class, vars);
 //			System.out.println(response);
 
@@ -73,7 +74,15 @@ public class OpenSecretService {
         return null;
 		}
 		return null;
-     }	
+     }
+
+	public static String getOpenSecretApiKey() {
+		return openSecretApiKey;
+	}
+
+	public void setOpenSecretApiKey(String openSecretApiKey) {
+		this.openSecretApiKey = openSecretApiKey;
+	}	
 
 	
 }

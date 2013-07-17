@@ -10,15 +10,15 @@
 		<property name="location" value="classpath:/project.properties" />
 	</bean>	
 
-	<bean id="excelCIDParserService" class="com.springAPITest.proV.service.impl.ExcelCIDParser">
+	<bean id="excelCIDParserService" class="com.runningtogov.proV.services.impl.ExcelCIDParser">
 	    <property name="cidFileName" value="${projectVulture.excelCIDParser.fileName}" />
   	</bean>
 
-	<bean id="excelDubiousDemocracyParser" class="com.springAPITest.proV.service.impl.ExcelDubiousDemocracyParser">
+	<bean id="excelDubiousDemocracyParser" class="com.runningtogov.proV.services.impl.ExcelDubiousDemocracyParser">
 	    <property name="dubiousDemocracyFileName" value="${projectVulture.excelDubiousDemocracyParser.fileName}" />
   	</bean>
 
-	<bean id="openSecretApiKey" class="com.springAPITest.proV.service.OpenSecretService">
+	<bean id="openSecretApiKey" class="com.runningtogov.proV.services.OpenSecretService">
 	    <property name="openSecretApiKey" value="${projectVulture.openSecretService.openSecretApiKey}" />
   	</bean>
 

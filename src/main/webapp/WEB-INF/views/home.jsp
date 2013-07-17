@@ -13,7 +13,7 @@
 <body>
 
 	<h2>Project Vulture</h2>
-	<h2><A href="search">Begin</A></h2>
+	<h2><A href="search">Enter</A></h2>
 	
 </body>
 </html>

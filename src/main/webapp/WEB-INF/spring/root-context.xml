@@ -21,7 +21,10 @@
 	<bean id="openSecretApiKey" class="com.runningtogov.proV.services.OpenSecretService">
 	    <property name="openSecretApiKey" value="${projectVulture.openSecretService.openSecretApiKey}" />
   	</bean>
-
+  	
+	<bean id="usCensusApiKey" class="com.runningtogov.proV.services.USCensusService">
+	    <property name="usCensusApiKey" value="${projectVulture.usCensusService.usCensusApiKey}" />
+  	</bean>
 
 
 <!-- 	<bean id="twitterTemplate" class="com.springAPITest.proV.service.TwitterTemplateCreator"> -->

@@ -6,34 +6,20 @@
 	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
- 
-    
-<!--     <http auto-config="true"> -->
-<!--         <intercept-url pattern="/login*" access="ROLE_USER" /> -->
-<!--         <form-login login-page="/login" default-target-url="/welcome" -->
-<!--             authentication-failure-url="/loginfailed" /> -->
-<!--         <logout logout-success-url="/logout" /> -->
-<!--     </http> -->
     
      <http auto-config="true" use-expressions="true">
+      <intercept-url pattern="/resources*" access="permitAll()"/>
       <intercept-url pattern="/login*" access="permitAll()"/>
       <intercept-url pattern="/**" access="isAuthenticated()"/>
       <form-login
-        login-page="/login.html"
+        login-page="/login"
+        default-target-url="/home"
         login-processing-url="/j_spring_security_check.html"
-        authentication-failure-url="/login_error.jsp"
-        default-target-url="/home.jsp"
+        authentication-failure-url="/login_error"
         always-use-default-target="true"/>
+      <logout logout-success-url="/logout" />
     </http>
     
-<!-- 	<http auto-config="true"> -->
-<!-- 		<intercept-url pattern="/welcome*" access="ROLE_USER" /> -->
-<!-- 		<intercept-url pattern="/welcome*" access="ROLE_USER" /> -->
-<!-- 		<form-login login-page="/login" default-target-url="/welcome" -->
-<!-- 			authentication-failure-url="/loginfailed" /> -->
-<!-- 		<logout logout-success-url="/logout" /> -->
-<!-- 	</http> -->
- 
 	<authentication-manager>
 	  <authentication-provider>
 		<user-service>

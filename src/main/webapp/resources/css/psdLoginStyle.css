@@ -1,0 +1,104 @@
+body {
+    background:url('http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/otis_redding.png') repeat;
+    font-family: 'Questrial', sans-serif;
+}
+
+form {
+    display:block;
+    margin-left:auto; 
+    margin-right:auto;
+    width:450px;
+    height:auto;
+    background:white;
+    margin-top:30px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 3px 3px 10px #333;
+    overflow:hidden;
+    margin-bottom:30px;
+}
+
+/* main title for the form */
+form h1 {
+    height:40px;
+    display:block;
+    width:100%;
+    font-size:16px;
+    /* Gradient for the title */
+    /* IE10 Consumer Preview */ 
+    background-image: -ms-linear-gradient(top, #F1F1F1 0%, #CDCDCD 100%);
+    /* Mozilla Firefox */ 
+    background-image: -moz-linear-gradient(top, #F1F1F1 0%, #CDCDCD 100%);
+    /* Opera */ 
+    background-image: -o-linear-gradient(top, #F1F1F1 0%, #CDCDCD 100%);
+    /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #F1F1F1), color-stop(1, #CDCDCD));
+    /* Webkit (Chrome 11+) */ 
+    background-image: -webkit-linear-gradient(top, #F1F1F1 0%, #CDCDCD 100%);
+    /* W3C Markup, IE10 Release Preview */ 
+    background-image: linear-gradient(to bottom, #F1F1F1 0%, #CDCDCD 100%);
+    border-bottom:1px solid #bfbfbf;   
+}
+
+form h1 span {
+    margin-left:10px;
+    padding-top:12px;
+    display:block;    
+}
+
+input {
+    border:0px;
+    border-bottom:1px solid #e5e5e5;  
+    height:40px;
+    font-size:12px; 
+    display:block; 
+    padding-left:10px; 
+    width:100%;    
+}
+
+input:focus {
+    color:#f2871f;
+    -moz-box-shadow:    inset 0 0 2px #f2871f;
+    -webkit-box-shadow: inset 0 0 2px #f2871f;
+    box-shadow:         inset 0 0 2px #f2871f;
+}
+
+/* 2 columns when we want to put 2 inputs on the same line */
+.col_left  { display:block; width:50%; overflow:hidden; float:left; }
+.col_right { display:block; width:50%; overflow:hidden; margin-left:50%; }
+
+.col_right input { border-left:1px solid #e5e5e5; }
+
+.left  { float:left; }
+.right { float:right; }
+
+/* example */
+.ok { color:#88ab2d; }
+.ko { color:#e20001; }
+
+/* subtitle for the form */
+h2 {
+    font-size:16px; 
+    padding-bottom:12px; 
+    padding-left:10px; 
+    padding-top:12px; 
+    border-bottom:1px solid #e5e5e5;
+}
+
+/* Test to style the select element .. 
+   Only "works" fine on Firefox       */
+select{
+    width;400px; 
+    border:0px; 
+    display:block; 
+    padding-left:8px; 
+    padding-top:12px; 
+    padding-bottom:12px; 
+    font-size:12px;
+}
+option{
+    /* ugly trick to hide the arrow of the dropdown list 
+       must work on it, use JS to style the element ? */        
+    width:435px;   
+}

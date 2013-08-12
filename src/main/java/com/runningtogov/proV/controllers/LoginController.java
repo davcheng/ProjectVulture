@@ -40,5 +40,12 @@ public class LoginController {
 		return "login";
  
 	}
+	
+	@RequestMapping(value="/register", method = RequestMethod.GET)
+	public String register(ModelMap model) {
+ 
+		return "register";
+ 
+	}
  
 }

@@ -20,7 +20,7 @@
         </div>
     </c:if>
 
-    <form name='f' action="<c:url value='j_spring_security_check.html' />"
+    <form name='f' action="<c:url value='j_spring_security_check' />"
         method='POST'>
 
         <table>

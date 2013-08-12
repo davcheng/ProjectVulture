@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
  
 	@RequestMapping(value="/home", method = RequestMethod.GET)
-	public String home(ModelMap model, Principal principal ) {
+	public String printUserDetails(ModelMap model, Principal principal ) {
  
 //		String name = principal.getName();
 //		model.addAttribute("username", name);

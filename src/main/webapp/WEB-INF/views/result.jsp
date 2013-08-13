@@ -22,6 +22,9 @@
 		<P>party = ${party}.</P>
 		<P>debt = ${debt}.</P>
 
+	<h1>Dubious Democracy Data:</h1>
+		<P>Candidate's Prior Winning Percentage ${candWinPct}.</P>
+
 	<h1>USA Today Census Data:</h1>		
 		<P>Population ${population}.</P>
 		<P>Percent White = ${pct_white}.</P>

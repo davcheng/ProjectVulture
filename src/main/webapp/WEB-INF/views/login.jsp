@@ -7,19 +7,22 @@
 		<link rel="stylesheet" href="${url}" type="text/css">
     </head>
     <body onload='document.loginForm.j_username.focus();'>
-    <form name='loginForm' action="<c:url value='j_spring_security_check.html' />"
-        method='POST'>
-            <h1><span>Login</span></h1>
-            <div>
-                <input type="text" name="j_username" placeholder="User Id"/>
-                <input type="password" name="j_password" placeholder="Password"/>
-            </div>
-
-           <input type="submit" value="Sign Up"/>
-<!--            <div> -->
-<%--    			 <a href="<c:url value="/register" />"> Register</a> --%>
-<!--            </div>  -->
-        </form>
+	    <form name='loginForm' action="<c:url value='j_spring_security_check.html' />"
+	        method='POST'>
+	        	<div>
+					<font color="red"> ${error} </font>
+				</div>
+	            <h1><span>Login</span></h1>
+	            <div>
+	                <input type="text" name="j_username" placeholder="User Id"/>
+	                <input type="password" name="j_password" placeholder="Password"/>
+	            </div>
+	
+	           <input type="submit" value="Sign In"/>
+	    </form>
+        <form>
+			<input Type="button" VALUE="Need to Register?" ONCLICK="window.location.href='register'"> 
+		</form>
     </body>
 </html>
 

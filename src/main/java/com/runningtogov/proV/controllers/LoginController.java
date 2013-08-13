@@ -12,9 +12,9 @@ public class LoginController {
 	@RequestMapping(value="/home", method = RequestMethod.GET)
 	public String printUserDetails(ModelMap model, Principal principal ) {
  
-//		String name = principal.getName();
-//		model.addAttribute("username", name);
-//		model.addAttribute("message", "Spring Security Custom Form example");
+		String name = principal.getName();
+		model.addAttribute("username", name);
+//		model.addAttribute("message", "Welcome User");
 		return "home";
  
 	}
@@ -29,7 +29,7 @@ public class LoginController {
 	@RequestMapping(value="/login_error", method = RequestMethod.GET)
 	public String loginerror(ModelMap model) {
  
-		model.addAttribute("error", "true");
+		model.addAttribute("error", "Error: Invalid Credentials");
 		return "login";
  
 	}

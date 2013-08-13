@@ -15,11 +15,10 @@
 	<h2>Project Vulture</h2>
 	<h2><A href="search">Enter</A></h2>
 </body>
-<body>
-    <h3>Message : ${message}</h3>   
-    <h3>Username : ${username}</h3>   
-   
-    <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
-   
+<body>  
+    <h2>Username : ${username}</h2>   
+  	<h2>
+  		<a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+    </h2>
 </body>
 </html>

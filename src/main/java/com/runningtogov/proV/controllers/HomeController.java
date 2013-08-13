@@ -27,6 +27,7 @@ import com.runningtogov.proV.forms.searchCandidateForm;
 import com.runningtogov.proV.services.*;
 import com.runningtogov.proV.services.impl.ExcelCIDParser;
 import com.runningtogov.proV.services.impl.ExcelDubiousDemocracyParser;
+import com.runningtogov.proV.services.impl.NameConverter;
 import com.runningtogov.proV.services.responsedata.BroadbandMapCensusResponse;
 import com.runningtogov.proV.services.responsedata.OpenSecretResponse;
 import com.runningtogov.proV.services.responsedata.USATodayCensusResponse;
@@ -63,10 +64,9 @@ public class HomeController {
   	@RequestMapping(value = "/search", method = RequestMethod.POST)
   	public String searchCandidate(@ModelAttribute searchCandidateForm searchName, 
   			 ModelMap model) throws JsonParseException, JsonMappingException, IOException {
-		  
-  		
   		
   		//BroadbandMap Census Data
+  		System.out.println(NameConverter.convertToFirstLastName(searchName.getCand_name()));
   		String fips = "01";
   		String congDistrict = "01";
   		BroadbandMapCensusResponse broadbandResponse = BroadbandMapCensus.retrieveCensusData(fips, congDistrict);
@@ -74,27 +74,16 @@ public class HomeController {
 		System.out.println("education bachelor or greater "+ broadbandResponse.getEducationBachelorOrGreater());
 		 
 		//US Census Data
-		String a = USCensusService.retrieveUSCensusCongDistrictData("DP05_0033E", "51", "11");
-		  
-  		//USA TODAY Census Data
-		USATodayCensusResponse usaTodayResponse = USATodayCensus.retrieveCensusData("01", "3");
+//		String a = USCensusService.retrieveUSCensusCongDistrictData("DP05_0033E", "51", "11");		
+		
 
-		   model.addAttribute("population", usaTodayResponse.getPop());
-		   model.addAttribute("pct_white", usaTodayResponse.getPctWhite());		   
-		   model.addAttribute("pct_asian", usaTodayResponse.getPctAsian());
-		   model.addAttribute("pct_hisp", usaTodayResponse.getPctHisp());
-		   model.addAttribute("diversity_index", usaTodayResponse.getUSATDiversityIndex());
-
-		  System.out.println("the retrieved POPULATION is: "+usaTodayResponse.getPop());
-		  System.out.println("the retrieved PERCENT ASIAN is: "+usaTodayResponse.getPctAsian());	
-  		
 		//  
 		//beginning of twitter  
 		//  
 	   Twitter twitterTemplate = twitterCreator.getTwitterTemplate();
 	   
 	   //search for user
-	   List<TwitterProfile> userSearchList = twitterService.searchTwitterUsers(twitterTemplate, searchName.getCand_name());
+	   List<TwitterProfile> userSearchList = twitterService.searchTwitterUsers(twitterTemplate, searchName.getCand_name()+" Representative");
 	   Iterator<TwitterProfile> userSearchIterator = userSearchList.iterator();
 	   TwitterProfile firstResult = userSearchIterator.next();
 	   
@@ -134,23 +123,41 @@ public class HomeController {
 		  //look up candidate's CID
 		  OpenSecretResponse candidateInfo = OpenSecretService.retrieveOpenSecretCandidateData(retrievedCID);
 
-		  //reform name from lastName, firstName => firstName lastName
-		  String fNameLName;
+		  //reformat name from lastName, firstName => firstName lastName
+		  String fNameLName = NameConverter.convertToFirstLastName(searchName.getCand_name());
 		  
 		  
-		  
-		  //dubious democracy test
-			String candidateStateFIPS = ExcelDubiousDemocracyParser.lookUpCandidateFIPS("Gerry Connolly"); 
+		  //
+		  //Dubious Democracy test
+		  //
+			String candidateStateFIPS = ExcelDubiousDemocracyParser.lookUpCandidateFIPS(fNameLName); 
 			System.out.println("the retrieved candidate fips!!!!!!: "+ candidateStateFIPS);
 			
-			String candidateWinPct = ExcelDubiousDemocracyParser.lookUpCandidateWinningPct("Gerry Connolly"); 
+			String candidateWinPct = ExcelDubiousDemocracyParser.lookUpCandidateWinningPct(fNameLName); 
 			System.out.println("the retrieved winning pct!!!!!!: "+ candidateWinPct);
 			
-			String candidateCongDistrict = ExcelDubiousDemocracyParser.lookUpCandidateCongDistrict("Gerry Connolly"); 
+			String candidateCongDistrict = ExcelDubiousDemocracyParser.lookUpCandidateCongDistrict(fNameLName); 
 			System.out.println("the cong district of candidate is "+ candidateCongDistrict);		
 			// end test
+			model.addAttribute("candWinPct", candidateWinPct);	
+	 		System.out.println("name converted:"+NameConverter.convertToFirstLastName(searchName.getCand_name()));
 			
-		  
+	 		//
+	  		//USA TODAY Census Data
+			//
+	 		USATodayCensusResponse usaTodayResponse = USATodayCensus.retrieveCensusData(candidateStateFIPS, candidateCongDistrict);
+
+			   model.addAttribute("population", usaTodayResponse.getPop());
+			   model.addAttribute("pct_white", usaTodayResponse.getPctWhite());		   
+			   model.addAttribute("pct_asian", usaTodayResponse.getPctAsian());
+			   model.addAttribute("pct_hisp", usaTodayResponse.getPctHisp());
+			   model.addAttribute("diversity_index", usaTodayResponse.getUSATDiversityIndex());
+
+			  System.out.println("the retrieved POPULATION is: "+usaTodayResponse.getPop());
+			  System.out.println("the retrieved PERCENT ASIAN is: "+usaTodayResponse.getPctAsian());	
+	  		
+	 		
+	 		
 		  model.addAttribute("cid", candidateInfo.getCid());	
 		  model.addAttribute("cand_name", candidateInfo.getCand_name());	
 		  model.addAttribute("cash_on_hand", candidateInfo.getCash_on_hand());
@@ -166,37 +173,8 @@ public class HomeController {
 	  catch (final NullPointerException e) {
 		  logger.info("Failed find candidate", e.toString());
 		  model.addAttribute("error_msg", "Could not retrieve data on candidate");	
-	  }
-
-	  // 
-	  //Dubious Democracy
-	  //
-	   
-	  try{
-
-
-		//remove this is dubious democracy
-		String candidateStateFIPS = ExcelDubiousDemocracyParser.lookUpCandidateFIPS("Jo Bonner"); 
-		System.out.println("the retrieved candidate fips!!!!!!: "+ candidateStateFIPS);
-		
-		String candidateWinPct = ExcelDubiousDemocracyParser.lookUpCandidateWinningPct("Jo Bonner"); 
-		System.out.println("the retrieved winning pct!!!!!!: "+ candidateWinPct);
-		
-		
-		
-		  //model.addAttribute("debt", candidateInfo.getDebt());
-			
-		//	logger.info("candidate info is", candidateInfo);
-	      return "result";
-	  }
-	  catch (final NullPointerException e) {
-		  logger.info("Failed find candidate", e.toString());
-		  model.addAttribute("error_msg", "Could not retrieve data on candidate");	
-	  }
-
-	  
+	  }	  
 	  return "search";
-
   	
   	}
 	

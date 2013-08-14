@@ -25,12 +25,18 @@
 	<h1>Dubious Democracy Data:</h1>
 		<P>Candidate's Prior Winning Percentage ${candWinPct}.</P>
 
-	<h1>USA Today Census Data:</h1>		
-		<P>Population ${population}.</P>
-		<P>Percent White = ${pct_white}.</P>
-		<P>Percent Asian= ${pct_asian}.</P>
-		<P>Percent Hispanic = ${pct_hisp}.</P>
-		<P>USA Diversity Index = ${diversity_index}.</P>
+	<h1>Broadband Data:</h1>		
+	    
+		<P>Age Between 5 to 19 ${ageFiveToNineteen}.</P>
+		<P>Age Greater Than 60= ${ageGreaterThanSixty}.</P>
+		<P>Percent White = ${white}.</P>
+		<P>Percent Asian= ${asian}.</P>
+		<P>Percent Hispanic = ${hispanic}.</P>
+		<P>Median Income = ${median_income}.</P>
+		<P>Income Greater than 200k = ${incGreaterThanTwohundred}.</P>
+		<P>Below Poverty = ${belowPoverty}.</P>
+		
+
 
 	<h1>Twitter Data:</h1>
 		<P>twitter screen name = ${twitter_screen_name}.</P>

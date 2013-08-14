@@ -26,11 +26,15 @@ public class ExcelDubiousDemocracyParser {
 
 	public static String lookUpCandidateCongDistrict(String representativeName) throws IOException{
 		String congDistrict = vLookUpData(representativeName, 13);
-		
 		//if congDistrict is AL (alone), then enter 00 for candidates congDistrict
 		if (congDistrict.equals("AL")) {
 			congDistrict = "00";
 		}
+		if (congDistrict.contains(".")){
+			congDistrict = congDistrict.substring(0, congDistrict.indexOf("."));
+			System.out.println("reformatted congdistrict "+ congDistrict);
+		}
+		
 		return congDistrict;
 	}
 	

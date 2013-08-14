@@ -45,7 +45,7 @@ public class USATodayCensus {
 					vars.put("keypat", keypat);
 				    vars.put("sumlevid", sumlevid);
 				    //String response = restTemplate.getForObject("http://api.usatoday.com/open/census/loc?keypat={keypat}&keyname=FIPS&sumlevid={sumlevid}&api_key={key}", String.class, vars);
-				    String response = restTemplate.getForObject("http://api.usatoday.com/open/census/loc?keypat=51059&keyname=FIPS&sumlevid=3&api_key={key}", String.class, vars);
+				    String response = restTemplate.getForObject("http://api.usatoday.com/open/census/loc?keypat={keypat}&keyname=FIPS&sumlevid=3&api_key={key}", String.class, vars);
 					
 				    System.out.println("USA TODAY: "+response);
 				    

@@ -59,117 +59,100 @@ public class HomeController {
 	@Autowired
 	private  TwitterTemplateCreator twitterCreator;
 
-	//TODO: move to search controller
 	// mental notes, the searchCandidateForm is populated with the value/name from the openSecret.jsp
   	@RequestMapping(value = "/search", method = RequestMethod.POST)
   	public String searchCandidate(@ModelAttribute searchCandidateForm searchName, 
   			 ModelMap model) throws JsonParseException, JsonMappingException, IOException {
   		
-  		//BroadbandMap Census Data
+		//reformat name from lastName, firstName => firstName lastName
+		String fNameLName = NameConverter.convertToFirstLastName(searchName.getCand_name());
   		System.out.println(NameConverter.convertToFirstLastName(searchName.getCand_name()));
-  		String fips = "01";
-  		String congDistrict = "01";
-  		BroadbandMapCensusResponse broadbandResponse = BroadbandMapCensus.retrieveCensusData(fips, congDistrict);
-		System.out.println("age 20-34 "+broadbandResponse.getAgeBetween20to34());
-		System.out.println("education bachelor or greater "+ broadbandResponse.getEducationBachelorOrGreater());
-		 
-		//US Census Data
-//		String a = USCensusService.retrieveUSCensusCongDistrictData("DP05_0033E", "51", "11");		
 		
-
+  		//look up candidates state and congressional district
+  		String candidateStateFIPS = ExcelDubiousDemocracyParser.lookUpCandidateFIPS(fNameLName); 		
+		String candidateCongDistrict = ExcelDubiousDemocracyParser.lookUpCandidateCongDistrict(fNameLName); 
+  		
+		//
+  		//BroadbandMap Census Data
+		//
+  		
+  		BroadbandMapCensusResponse broadbandResponse = BroadbandMapCensus.retrieveCensusData(candidateStateFIPS, candidateCongDistrict);
+		model.addAttribute("ageFiveToNineteen", broadbandResponse.getAgeBetween5to19());		
+		model.addAttribute("ageThirtyFiveToFiftynine", broadbandResponse.getAgeBetween35to59());	
+	    model.addAttribute("ageGreaterThanSixty", broadbandResponse.getAgeGreaterThan60());
+	    model.addAttribute("bachOrGreater", broadbandResponse.getEducationBachelorOrGreater());
+	    model.addAttribute("belowPoverty", broadbandResponse.getIncomeBelowPoverty());
+	    model.addAttribute("incOnehundredToTwohundred", broadbandResponse.getIncomeBetween100to200());
+	    model.addAttribute("incGreaterThanTwohundred", broadbandResponse.getIncomeGreater200());
+	    model.addAttribute("median_income", broadbandResponse.getMedianIncome());
+	    model.addAttribute("white", broadbandResponse.getRaceWhite());
+	    model.addAttribute("hispanic", broadbandResponse.getRaceHispanic());	    
+	    model.addAttribute("asian", broadbandResponse.getRaceAsian());	 
+	    
 		//  
 		//beginning of twitter  
 		//  
-	   Twitter twitterTemplate = twitterCreator.getTwitterTemplate();
+	    Twitter twitterTemplate = twitterCreator.getTwitterTemplate();
 	   
-	   //search for user
-	   List<TwitterProfile> userSearchList = twitterService.searchTwitterUsers(twitterTemplate, searchName.getCand_name()+" Representative");
-	   Iterator<TwitterProfile> userSearchIterator = userSearchList.iterator();
-	   TwitterProfile firstResult = userSearchIterator.next();
+	    //search for user
+	    List<TwitterProfile> userSearchList = twitterService.searchTwitterUsers(twitterTemplate, searchName.getCand_name()+" Representative");
+	    Iterator<TwitterProfile> userSearchIterator = userSearchList.iterator();
+	    TwitterProfile firstResult = userSearchIterator.next();
 	   
-	   model.addAttribute("twitter_screen_name", firstResult.getScreenName());		   
-	   model.addAttribute("twitter_name", firstResult.getName());
-	   model.addAttribute("friends_count", firstResult.getFriendsCount());
-	   model.addAttribute("followers_count", firstResult.getFollowersCount());
-	   model.addAttribute("profile_img_url", firstResult.getProfileImageUrl());
+	    model.addAttribute("twitter_screen_name", firstResult.getScreenName());		   
+	    model.addAttribute("twitter_name", firstResult.getName());
+	    model.addAttribute("friends_count", firstResult.getFriendsCount());
+	    model.addAttribute("followers_count", firstResult.getFollowersCount());
+	    model.addAttribute("profile_img_url", firstResult.getProfileImageUrl());
 		   
 	   
-	   //search for tweets related to search topic
-	   SearchResults result = twitterTemplate.searchOperations().search(firstResult.getScreenName());
-	   List<Tweet> tweetResults = result.getTweets();
-	   model.put("tweetResults", tweetResults);
-	     
-	   //print out tweets
-//	   Iterator<Tweet> tweetIterator = tweetResults.iterator();
-//	   System.out.println("list of tweets related to user");
-//	   while (tweetIterator.hasNext()) {
-//		   Tweet currentTweet = tweetIterator.next();
-//		   System.out.println(currentTweet.getText());
-//		   System.out.println(currentTweet.getCreatedAt());
-//		}      
-//
-//	   System.out.println(result.getTweets());
-			   
-	  // 
-	  //Open Secret Search 
-	  //
+	    //search for tweets related to search topic
+	    SearchResults result = twitterTemplate.searchOperations().search(firstResult.getScreenName());
+	    List<Tweet> tweetResults = result.getTweets();
+	    model.put("tweetResults", tweetResults);
 	   
-	  try{
+	    try{
 
-		  String searchedName = searchName.getCand_name();
-		  String retrievedCID = ExcelCIDParser.lookupCandidateCID(searchedName); 
-		  System.out.println("name entered in search " + searchName.getCand_name());
-		  
-		  //look up candidate's CID
-		  OpenSecretResponse candidateInfo = OpenSecretService.retrieveOpenSecretCandidateData(retrievedCID);
+	    	String searchedName = searchName.getCand_name();
+	    	String retrievedCID = ExcelCIDParser.lookupCandidateCID(searchedName); 
+	    	System.out.println("name entered in search " + searchName.getCand_name());
+	    	
+	    	//
+	    	//Open Secret
+	    	//
+	    	OpenSecretResponse candidateInfo = OpenSecretService.retrieveOpenSecretCandidateData(retrievedCID);
 
-		  //reformat name from lastName, firstName => firstName lastName
-		  String fNameLName = NameConverter.convertToFirstLastName(searchName.getCand_name());
+			model.addAttribute("cid", candidateInfo.getCid());	
+			model.addAttribute("cand_name", candidateInfo.getCand_name());	
+			model.addAttribute("cash_on_hand", candidateInfo.getCash_on_hand());
+		    model.addAttribute("total_cash", candidateInfo.getTotal());
+		    model.addAttribute("spent_cash", candidateInfo.getSpent());
+		    model.addAttribute("first_elected", candidateInfo.getFirst_elected());
+		    model.addAttribute("party", candidateInfo.getParty());
+		    model.addAttribute("debt", candidateInfo.getDebt());
 		  
 		  
-		  //
-		  //Dubious Democracy test
-		  //
-			String candidateStateFIPS = ExcelDubiousDemocracyParser.lookUpCandidateFIPS(fNameLName); 
-			System.out.println("the retrieved candidate fips!!!!!!: "+ candidateStateFIPS);
-			
+	    	//
+	    	//Dubious Democracy test
+	    	//
+
 			String candidateWinPct = ExcelDubiousDemocracyParser.lookUpCandidateWinningPct(fNameLName); 
-			System.out.println("the retrieved winning pct!!!!!!: "+ candidateWinPct);
 			
-			String candidateCongDistrict = ExcelDubiousDemocracyParser.lookUpCandidateCongDistrict(fNameLName); 
-			System.out.println("the cong district of candidate is "+ candidateCongDistrict);		
-			// end test
 			model.addAttribute("candWinPct", candidateWinPct);	
-	 		System.out.println("name converted:"+NameConverter.convertToFirstLastName(searchName.getCand_name()));
 			
-	 		//
-	  		//USA TODAY Census Data
+			
 			//
-	 		USATodayCensusResponse usaTodayResponse = USATodayCensus.retrieveCensusData(candidateStateFIPS, candidateCongDistrict);
-
-			   model.addAttribute("population", usaTodayResponse.getPop());
-			   model.addAttribute("pct_white", usaTodayResponse.getPctWhite());		   
-			   model.addAttribute("pct_asian", usaTodayResponse.getPctAsian());
-			   model.addAttribute("pct_hisp", usaTodayResponse.getPctHisp());
-			   model.addAttribute("diversity_index", usaTodayResponse.getUSATDiversityIndex());
-
-			  System.out.println("the retrieved POPULATION is: "+usaTodayResponse.getPop());
-			  System.out.println("the retrieved PERCENT ASIAN is: "+usaTodayResponse.getPctAsian());	
-	  		
-	 		
-	 		
-		  model.addAttribute("cid", candidateInfo.getCid());	
-		  model.addAttribute("cand_name", candidateInfo.getCand_name());	
-		  model.addAttribute("cash_on_hand", candidateInfo.getCash_on_hand());
-	      model.addAttribute("total_cash", candidateInfo.getTotal());
-	      model.addAttribute("spent_cash", candidateInfo.getSpent());
-	      model.addAttribute("first_elected", candidateInfo.getFirst_elected());
-	      model.addAttribute("party", candidateInfo.getParty());
-	      model.addAttribute("debt", candidateInfo.getDebt());
+			//US Census Data
+			//
+			String pctFamiliesInPoverty = USCensusService.retrievePctFamiliesInPoverty(candidateStateFIPS, candidateCongDistrict);
 			
-			logger.info("candidate info is", candidateInfo);
-	      return "result";
+			model.addAttribute("pctInPoverty", pctFamiliesInPoverty);			   
+	
+		    logger.info("candidate info is", candidateInfo);
+		      
+		    return "result";
 	  }
+	  
 	  catch (final NullPointerException e) {
 		  logger.info("Failed find candidate", e.toString());
 		  model.addAttribute("error_msg", "Could not retrieve data on candidate");	

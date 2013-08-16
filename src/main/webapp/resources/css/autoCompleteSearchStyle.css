@@ -786,8 +786,12 @@ body .ui-tooltip {
 /* Component containers
 ----------------------------------*/
 .ui-widget {
-	font-family: Verdana,Arial,sans-serif;
-	font-size: 1.1em;
+	
+  	font-family: 'Questrial', sans-serif;
+	/*font-family: Verdana,Arial,sans-serif;*/
+	font-size: 12;
+	/*font-size: 1.1em;*/
+	
 }
 .ui-widget .ui-widget {
 	font-size: 1em;
@@ -796,6 +800,7 @@ body .ui-tooltip {
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
+    /*font-family: 'Questrial', sans-serif;*/
 	font-family: Verdana,Arial,sans-serif;
 	font-size: 1em;
 }

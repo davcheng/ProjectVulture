@@ -30,7 +30,6 @@ public class OpenSecretService {
 	public static OpenSecretResponse retrieveOpenSecretCandidateData(String CID) throws JsonParseException, JsonMappingException, IOException{
 		//TODO: spring inject
 
-
 		RestTemplate restTemplate = new RestTemplate();
 		try{
 			//make rest call

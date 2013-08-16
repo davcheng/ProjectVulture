@@ -1,11 +1,8 @@
 package com.runningtogov.proV.controllers;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -17,7 +14,6 @@ import org.springframework.social.twitter.api.Tweet;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.api.TwitterProfile;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +26,6 @@ import com.runningtogov.proV.services.impl.ExcelDubiousDemocracyParser;
 import com.runningtogov.proV.services.impl.NameConverter;
 import com.runningtogov.proV.services.responsedata.BroadbandMapCensusResponse;
 import com.runningtogov.proV.services.responsedata.OpenSecretResponse;
-import com.runningtogov.proV.services.responsedata.USATodayCensusResponse;
-
 
 /**
  * Handles requests for the application home page.
@@ -121,7 +115,8 @@ public class HomeController {
 			    	//Open Secret
 			    	//
 			    	OpenSecretResponse candidateInfo = OpenSecretService.retrieveOpenSecretCandidateData(retrievedCID);
-
+			    	System.out.println("started from the bottom");
+			    	
 					model.addAttribute("cid", candidateInfo.getCid());	
 					model.addAttribute("cand_name", candidateInfo.getCand_name());	
 					model.addAttribute("cash_on_hand", candidateInfo.getCash_on_hand());
@@ -130,14 +125,13 @@ public class HomeController {
 				    model.addAttribute("first_elected", candidateInfo.getFirst_elected());
 				    model.addAttribute("party", candidateInfo.getParty());
 				    model.addAttribute("debt", candidateInfo.getDebt());
-				  
-				  
+			    	
 			    	//
 			    	//Dubious Democracy test
 			    	//
 
 					String candidateWinPct = ExcelDubiousDemocracyParser.lookUpCandidateWinningPct(fNameLName); 
-					
+			    	System.out.println("now we hurrr");				
 					model.addAttribute("candWinPct", candidateWinPct);	
 					
 					

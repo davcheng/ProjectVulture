@@ -13,6 +13,14 @@ header
 	margin:auto;
 }
 
+inputField
+{
+	color:black;
+	font:30px Lucida Sans Unicode;
+	font-weight:bold;
+	margin:auto;
+}
+
 .center
 {
 	margin:auto;

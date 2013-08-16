@@ -92,9 +92,10 @@ public class HomeController {
 		  		System.out.println(NameConverter.convertToFirstLastName(searchName.getCand_name()));
 		  
 		  		//look up candidates state and congressional district
-		  		String candidateStateFIPS = ExcelDubiousDemocracyParser.lookUpCandidateFIPS(fNameLName); 		
+		  		String candidateStateFIPS = ExcelDubiousDemocracyParser.lookUpCandidateFIPS(fNameLName); 
+		  		System.out.println("cand state fips "+ candidateStateFIPS);
 				String candidateCongDistrict = ExcelDubiousDemocracyParser.lookUpCandidateCongDistrict(fNameLName); 
-		  		
+				System.out.println("cand cong district "+candidateCongDistrict);
 				//
 		  		//BroadbandMap Census Data
 				//

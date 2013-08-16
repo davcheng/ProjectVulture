@@ -31,7 +31,7 @@ public class BroadbandMapCensus {
 		// source: http://www.broadbandmap.gov/developer/api/demographics-api-by-geography-type-and-geography-id
 		//request looks like: {API Base}/demographic/{dataVersion}/{geographyType}/ids/{geographyIds}?format={format}&callback={functionName}
 		
-		String apiBase = "http://www.broadbandmap.gov/broadbandmap/";
+		String apiBase = "http://www.broadbandmap.gov/broadbandmap";
 		// geographyType can be: specify either one of the following geography type: 
 		// county, censusplace, msa, usf, statesenate, statehouse, congdistrict, tribalnation
 		String dataVersion = "jun2012";
@@ -85,6 +85,9 @@ public class BroadbandMapCensus {
      }	
 
 	private static String geographyIdBuilder(String fips, String congDistrict){
+		if (congDistrict.length()<2){
+			congDistrict = "0" + congDistrict;
+		}
 		return fips+"111"+congDistrict;
 	}
 }

@@ -27,7 +27,6 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -64,6 +63,7 @@
 	    <url-pattern>*.js</url-pattern>
 	    <url-pattern>*.css</url-pattern>
 	   	<url-pattern>*.xls</url-pattern>
+	    <url-pattern>*.gif</url-pattern>
 	</servlet-mapping>
 
 </web-app>

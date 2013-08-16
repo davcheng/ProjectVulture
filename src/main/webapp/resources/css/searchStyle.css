@@ -32,3 +32,35 @@ h2
 	text-align: right;
 }
 
+
+/* loading spinner  */
+#loader {
+	background-image:url('../img/greyBackground.png');
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:white;
+	opacity:0.3;
+	z-index:2;
+}
+#spinner_container {
+	position:absolute;
+	width:100%;
+	top: 50%;
+	left:0px;
+	height:1px;
+	overflow:visible;
+	opacity: 1;
+	background: transparent;
+}
+#spinner {
+	width: 31px;
+	height:31px;
+	margin-left:-15px;
+	position:absolute;
+	top:-15px;
+	left:50%;
+	display:block;
+}

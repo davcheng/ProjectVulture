@@ -35,7 +35,10 @@ public class NameConverter {
 	        return  newName;
 	      } 
        catch (final NullPointerException e){
-    	   logger.info("unable to lookup candidate in excel", e.toString());	
+    	   logger.info("unable to convert", "error converting name");	
+       }
+       catch (final StringIndexOutOfBoundsException e2){
+    	   logger.info("unable to convert", "error converting name");	
        }
        return null;
 	}

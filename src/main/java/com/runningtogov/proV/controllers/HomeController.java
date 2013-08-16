@@ -86,10 +86,11 @@ public class HomeController {
 	public String resultGet(@ModelAttribute searchCandidateForm searchName, 
 			   ModelMap model)  throws JsonParseException, JsonMappingException, IOException{
 		
+		try{
 		//reformat name from lastName, firstName => firstName lastName
 				String fNameLName = NameConverter.convertToFirstLastName(searchName.getCand_name());
 		  		System.out.println(NameConverter.convertToFirstLastName(searchName.getCand_name()));
-				
+		  
 		  		//look up candidates state and congressional district
 		  		String candidateStateFIPS = ExcelDubiousDemocracyParser.lookUpCandidateFIPS(fNameLName); 		
 				String candidateCongDistrict = ExcelDubiousDemocracyParser.lookUpCandidateCongDistrict(fNameLName); 
@@ -110,30 +111,6 @@ public class HomeController {
 			    model.addAttribute("white", broadbandResponse.getRaceWhite());
 			    model.addAttribute("hispanic", broadbandResponse.getRaceHispanic());	    
 			    model.addAttribute("asian", broadbandResponse.getRaceAsian());	 
-			    
-				//  
-				//beginning of twitter  
-				//  
-			    Twitter twitterTemplate = twitterCreator.getTwitterTemplate();
-			   
-			    //search for user
-			    List<TwitterProfile> userSearchList = twitterService.searchTwitterUsers(twitterTemplate, searchName.getCand_name()+" Representative");
-			    Iterator<TwitterProfile> userSearchIterator = userSearchList.iterator();
-			    TwitterProfile firstResult = userSearchIterator.next();
-			   
-			    model.addAttribute("twitter_screen_name", firstResult.getScreenName());		   
-			    model.addAttribute("twitter_name", firstResult.getName());
-			    model.addAttribute("friends_count", firstResult.getFriendsCount());
-			    model.addAttribute("followers_count", firstResult.getFollowersCount());
-			    model.addAttribute("profile_img_url", firstResult.getProfileImageUrl());
-				   
-			   
-			    //search for tweets related to search topic
-			    SearchResults result = twitterTemplate.searchOperations().search(firstResult.getScreenName());
-			    List<Tweet> tweetResults = result.getTweets();
-			    model.put("tweetResults", tweetResults);
-			   
-			    try{
 
 			    	String searchedName = searchName.getCand_name();
 			    	String retrievedCID = ExcelCIDParser.lookupCandidateCID(searchedName); 
@@ -172,18 +149,45 @@ public class HomeController {
 			
 				    logger.info("candidate info is", candidateInfo);
 				      
+				    
+					//  
+					//beginning of twitter  
+					//  
+				    Twitter twitterTemplate = twitterCreator.getTwitterTemplate();
+				   
+				    //search for user
+				    List<TwitterProfile> userSearchList = twitterService.searchTwitterUsers(twitterTemplate, searchName.getCand_name()+" Representative");
+				    Iterator<TwitterProfile> userSearchIterator = userSearchList.iterator();
+				    TwitterProfile firstResult = userSearchIterator.next();
+				   
+				    model.addAttribute("twitter_screen_name", firstResult.getScreenName());		   
+				    model.addAttribute("twitter_name", firstResult.getName());
+				    model.addAttribute("friends_count", firstResult.getFriendsCount());
+				    model.addAttribute("followers_count", firstResult.getFollowersCount());
+				    model.addAttribute("profile_img_url", firstResult.getProfileImageUrl());
+					   
+				   
+				    //search for tweets related to search topic
+				    SearchResults result = twitterTemplate.searchOperations().search(firstResult.getScreenName());
+				    List<Tweet> tweetResults = result.getTweets();
+				    model.put("tweetResults", tweetResults);
+				    
 				    return "result";
-			  }
+			    
+			}    
 			  
-			  catch (final NullPointerException e) {
-				  logger.info("Failed find candidate", e.toString());
-				  model.addAttribute("error_msg", "Could not retrieve data on candidate");	
-			  }	  
-			  return "search";
+			catch (final NullPointerException e) {
+				logger.info("Failed find candidate", e.toString());
+				model.addAttribute("error_msg", "Could not retrieve data on candidate");	
+			}	  
+			catch (final StringIndexOutOfBoundsException e2){
+				logger.info("unable to convert", "error converting name");
+				model.addAttribute("error_msg", "You Must Enter Name!");	
+			}
+		
+			return "search";
 		
 	}
-	
-	
 	
 
 	//currently unused

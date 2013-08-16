@@ -15,25 +15,25 @@
 $(document).ready(function(){
   $("#submit").click(function(){
     $(search).hide();
+    $(h2).hide(); 
     $(loading).show();
-    $(h2).hide();
+
   });
 });
 </script>
 </head>
 
 <h2 id="h2" class="center">Search by Candidate Name</h2>
-	<body onload='document.search.cand_name.focus();'>	
-<!-- 		<div id="loading" style="display:none"> -->
+	<body onload='document.search.cand_name.focus();' class="center">	
 		<div id="loading" style="display:none">
-			<div id="pleaseWait" class="center">
+			<div id="pleaseWait">
 				Searching the Universe
 			</div>
 			<div id="spinner_container">
 				<img id="spinner" src="${pageContext.request.contextPath}/resources/img/progress-wheel.gif" alt="" />
 			</div>
 		</div>
-		<div id="search" class="center">	
+		<div id="search">	
 			<P>
 				<font color="red">${error_msg}</font>
 			</P>

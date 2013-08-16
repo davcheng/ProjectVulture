@@ -67,9 +67,10 @@ h2
 }
 
 #pleaseWait {
+	font:30px;
+	font-weight:bold;
 	position:absolute;
+	width:100%;
 	top: 35%;
-	left:50;
-	text-align: center;
-	display:block;
+	left:0px;
 }

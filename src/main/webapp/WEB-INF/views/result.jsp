@@ -11,17 +11,14 @@
 <link rel="stylesheet" href="${url}" type="text/css" media="screen, projection">
 <title>Search Results</title>
 </head>
-<script language='javascript'>
-function loading(){
-   alert('helo');
-}
-</script>
+
 <body>
-	<div id="preloader">
-		<div id="spinner_container">
-			<img id="spinner" src="${pageContext.request.contextPath}/resources/img/progress-wheel.gif" alt="" />
-		</div>
-	</div>
+
+<!-- 	<div id="preloader"> -->
+<!-- 		<div id="spinner_container"> -->
+<%-- 			<img id="spinner" src="${pageContext.request.contextPath}/resources/img/progress-wheel.gif" alt="" /> --%>
+<!-- 		</div> -->
+<!-- 	</div> -->
 	<div id="wrapper">
 
 		<h1>Open Secret Data:</h1>

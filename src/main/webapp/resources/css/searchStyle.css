@@ -2,14 +2,15 @@
 body 
 {
 	background-image:url('../img/greyBackground.png');
+    font-family: 'Questrial', sans-serif;
 }
 
 h2 
 {
 	color:black;
-	text-align: center;
 	font:30px Lucida Sans Unicode;
 	font-weight:bold;
+	margin:auto;
 }
 
 .center
@@ -62,5 +63,13 @@ h2
 	position:absolute;
 	top:-15px;
 	left:50%;
+	display:block;
+}
+
+#pleaseWait {
+	position:absolute;
+	top: 35%;
+	left:50;
+	text-align: center;
 	display:block;
 }

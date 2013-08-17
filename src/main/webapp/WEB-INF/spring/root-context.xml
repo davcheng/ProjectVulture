@@ -26,6 +26,9 @@
 	    <property name="usCensusApiKey" value="${projectVulture.usCensusService.usCensusApiKey}" />
   	</bean>
 
+	<bean id="excelMonopolyService" class="com.runningtogov.proV.services.impl.ExcelMonopolyParser">
+	    <property name="monopolyFileName" value="${projectVulture.excelMonopolyParser.fileName}" />
+  	</bean>
 
 <!-- 	<bean id="twitterTemplate" class="com.springAPITest.proV.service.TwitterTemplateCreator"> -->
 <!-- 	    <property name="consumerKey" value="${projectVulture.twitterTemplate.consumerKey}" /> -->

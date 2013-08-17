@@ -13,14 +13,15 @@
 </head>
 
 <body>
-
-<!-- 	<div id="preloader"> -->
-<!-- 		<div id="spinner_container"> -->
-<%-- 			<img id="spinner" src="${pageContext.request.contextPath}/resources/img/progress-wheel.gif" alt="" /> --%>
-<!-- 		</div> -->
-<!-- 	</div> -->
 	<div id="wrapper">
 
+		<h1>Search Results for</h1>
+		<P>Candidate: ${cand_name}.</P>
+		<P>State: ${state}.</P>
+		<P>Congressional District: ${congDistrict}.</P>
+		<P>Party: ${candidateParty}.</P>
+		<P>Year Elected: ${yearElected}.</P>
+				
 		<h1>Open Secret Data:</h1>
 			<P><font color="red">${error_msg}</font></P>
 			

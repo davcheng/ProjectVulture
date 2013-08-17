@@ -23,6 +23,11 @@ public class ExcelDubiousDemocracyParser {
 		String stateAbbrv = vLookUpData(representativeName, 1);
 		return fipsHashMap(stateAbbrv);
 	}
+	
+	public static String lookUpCandidateState(String representativeName) throws IOException{
+		String stateAbbrv = vLookUpData(representativeName, 1);
+		return stateAbbrv;
+	}
 
 	public static String lookUpCandidateCongDistrict(String representativeName) throws IOException{
 		String congDistrict = vLookUpData(representativeName, 13);

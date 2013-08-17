@@ -23,6 +23,7 @@ import com.runningtogov.proV.forms.searchCandidateForm;
 import com.runningtogov.proV.services.*;
 import com.runningtogov.proV.services.impl.ExcelCIDParser;
 import com.runningtogov.proV.services.impl.ExcelDubiousDemocracyParser;
+import com.runningtogov.proV.services.impl.ExcelMonopolyParser;
 import com.runningtogov.proV.services.impl.NameConverter;
 import com.runningtogov.proV.services.responsedata.BroadbandMapCensusResponse;
 import com.runningtogov.proV.services.responsedata.OpenSecretResponse;
@@ -87,9 +88,16 @@ public class HomeController {
 		  
 		  		//look up candidates state and congressional district
 		  		String candidateStateFIPS = ExcelDubiousDemocracyParser.lookUpCandidateFIPS(fNameLName); 
-		  		System.out.println("cand state fips "+ candidateStateFIPS);
 				String candidateCongDistrict = ExcelDubiousDemocracyParser.lookUpCandidateCongDistrict(fNameLName); 
-				System.out.println("cand cong district "+candidateCongDistrict);
+
+				model.addAttribute("congDistrict", candidateCongDistrict);		
+				model.addAttribute("state", ExcelDubiousDemocracyParser.lookUpCandidateState(fNameLName));
+				
+		  		String candidateParty = ExcelMonopolyParser.lookUpCandidateParty(fNameLName); 
+				String yearElected = ExcelMonopolyParser.lookUpCandidateYearElected(fNameLName);
+				
+				model.addAttribute("candidateParty", candidateParty);		
+				model.addAttribute("yearElected", yearElected);
 				//
 		  		//BroadbandMap Census Data
 				//

@@ -20,27 +20,33 @@ public class ExcelMonopolyParser {
 	private static String monopolyFileName;	
 
 	public static String lookUpCandidateParty(String representativeName) throws IOException{
-		String candParty = vLookUpData(representativeName, 4);
+		String candParty = vLookUpData(representativeName, 4,4);
 		String Party = candParty.substring(0, candParty.indexOf("."));
 		System.out.println("Candidate party"+Party);
 		return Party;
 	}
 	
 	public static String lookUpCandidateYearElected(String representativeName) throws IOException{
-		String yearElected = vLookUpData(representativeName,3);
+		String yearElected = vLookUpData(representativeName,3,4);
 		System.out.println("year elected"+yearElected);
 		return yearElected;
 	}
 	
+	public static String lookUpCandidatePartisanship(String representativeName) throws IOException{
+		String partisanship = vLookUpData(representativeName,15,4);
+		System.out.println("year elected"+partisanship);
+		return partisanship;
+	}
+		
 	
-	public static String vLookUpData(String cellContent, int colnr) throws IOException{
+	public static String vLookUpData(String cellContent, int colnr, int sheetNumber) throws IOException{
        try{
     	   InputStream input = new ClassPathResource(monopolyFileName).getInputStream();
 	        //initialize rownumber
 	        int rownr =0;
 	        
 	        XSSFWorkbook wb = new XSSFWorkbook(input);
-	        XSSFSheet sheet = wb.getSheetAt(4);
+	        XSSFSheet sheet = wb.getSheetAt(sheetNumber);
 	        
 	        //find row number with representative name
 	        rownr = findRow(sheet, cellContent);
@@ -79,15 +85,15 @@ public class ExcelMonopolyParser {
 	/**
 	 * @return the monopolyFileName
 	 */
-	public static String getMonopolyFileName() {
+	public String getMonopolyFileName() {
 		return monopolyFileName;
 	}
 
 	/**
 	 * @param monopolyFileName the monopolyFileName to set
 	 */
-	public static void setMonopolyFileName(String monopolyFileName) {
-		ExcelMonopolyParser.monopolyFileName = monopolyFileName;
+	public void setMonopolyFileName(String monopolyFileName) {
+		this.monopolyFileName = monopolyFileName;
 	}
     
 

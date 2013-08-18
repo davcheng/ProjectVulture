@@ -21,6 +21,7 @@
 		<P>Congressional District: ${congDistrict}.</P>
 		<P>Party: ${candidateParty}.</P>
 		<P>Year Elected: ${yearElected}.</P>
+		<P>Partisanship Rating of District: ${partisanship}.</P>
 				
 		<h1>Open Secret Data:</h1>
 			<P><font color="red">${error_msg}</font></P>

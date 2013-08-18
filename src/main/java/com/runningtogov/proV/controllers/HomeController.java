@@ -95,9 +95,12 @@ public class HomeController {
 				
 		  		String candidateParty = ExcelMonopolyParser.lookUpCandidateParty(fNameLName); 
 				String yearElected = ExcelMonopolyParser.lookUpCandidateYearElected(fNameLName);
+				String partisanship = ExcelMonopolyParser.lookUpCandidatePartisanship(fNameLName);
 				
 				model.addAttribute("candidateParty", candidateParty);		
 				model.addAttribute("yearElected", yearElected);
+				model.addAttribute("partisanship", partisanship);
+				
 				//
 		  		//BroadbandMap Census Data
 				//

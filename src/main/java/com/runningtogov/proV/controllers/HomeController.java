@@ -95,7 +95,7 @@ public class HomeController {
 				
 		  		String candidateParty = ExcelMonopolyParser.lookUpCandidateParty(fNameLName); 
 				String yearElected = ExcelMonopolyParser.lookUpCandidateYearElected(fNameLName);
-				String partisanship = ExcelMonopolyParser.lookUpCandidatePartisanship(fNameLName);
+				Double partisanship = ExcelMonopolyParser.lookUpCandidatePartisanship(fNameLName);
 				
 				model.addAttribute("candidateParty", candidateParty);		
 				model.addAttribute("yearElected", yearElected);
@@ -104,6 +104,7 @@ public class HomeController {
 				//
 		  		//BroadbandMap Census Data
 				//
+				//TODO: Convert Strings to double use Double.parseDouble()
 		  		
 		  		BroadbandMapCensusResponse broadbandResponse = BroadbandMapCensus.retrieveCensusData(candidateStateFIPS, candidateCongDistrict);
 				model.addAttribute("ageFiveToNineteen", broadbandResponse.getAgeBetween5to19());		

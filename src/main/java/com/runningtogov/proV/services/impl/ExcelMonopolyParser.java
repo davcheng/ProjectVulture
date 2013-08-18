@@ -32,10 +32,10 @@ public class ExcelMonopolyParser {
 		return yearElected;
 	}
 	
-	public static String lookUpCandidatePartisanship(String representativeName) throws IOException{
+	public static double lookUpCandidatePartisanship(String representativeName) throws IOException{
 		String partisanship = vLookUpData(representativeName,15,4);
-		System.out.println("year elected"+partisanship);
-		return partisanship;
+		double partisanshipDouble = Double.parseDouble(partisanship);
+		return partisanshipDouble;
 	}
 		
 	

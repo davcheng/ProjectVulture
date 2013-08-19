@@ -43,8 +43,9 @@ public class ExcelDubiousDemocracyParser {
 		return congDistrict;
 	}
 	
-	public static String lookUpCandidateWinningPct(String representativeName) throws IOException{
-		String winPct = vLookUpData(representativeName, 22);
+	public static Double lookUpCandidateWinningPct(String representativeName) throws IOException{
+		String win = vLookUpData(representativeName, 22);
+		double winPct = Double.parseDouble(win);
 		return winPct;
 	}
 	

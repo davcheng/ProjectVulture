@@ -142,8 +142,7 @@ public class HomeController {
 			    	//Dubious Democracy test
 			    	//
 
-					String candidateWinPct = ExcelDubiousDemocracyParser.lookUpCandidateWinningPct(fNameLName); 
-			    	System.out.println("now we hurrr");				
+					Double candidateWinPct = ExcelDubiousDemocracyParser.lookUpCandidateWinningPct(fNameLName);		
 					model.addAttribute("candWinPct", candidateWinPct);	
 					
 					

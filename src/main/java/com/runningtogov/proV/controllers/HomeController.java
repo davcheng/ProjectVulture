@@ -107,17 +107,24 @@ public class HomeController {
 				//TODO: Convert Strings to double use Double.parseDouble()
 		  		
 		  		BroadbandMapCensusResponse broadbandResponse = BroadbandMapCensus.retrieveCensusData(candidateStateFIPS, candidateCongDistrict);
-				model.addAttribute("ageFiveToNineteen", broadbandResponse.getAgeBetween5to19());		
+				model.addAttribute("ageFiveToNineteen", broadbandResponse.getAgeBetween5to19());
+				model.addAttribute("ageTwentyToThirtyFour", broadbandResponse.getAgeBetween20to34());
 				model.addAttribute("ageThirtyFiveToFiftynine", broadbandResponse.getAgeBetween35to59());	
 			    model.addAttribute("ageGreaterThanSixty", broadbandResponse.getAgeGreaterThan60());
+			    
+			    model.addAttribute("educationHighSchool", broadbandResponse.getEducationHighSchoolGraduate());
 			    model.addAttribute("bachOrGreater", broadbandResponse.getEducationBachelorOrGreater());
+			    
 			    model.addAttribute("belowPoverty", broadbandResponse.getIncomeBelowPoverty());
 			    model.addAttribute("incOnehundredToTwohundred", broadbandResponse.getIncomeBetween100to200());
 			    model.addAttribute("incGreaterThanTwohundred", broadbandResponse.getIncomeGreater200());
 			    model.addAttribute("median_income", broadbandResponse.getMedianIncome());
+			    
 			    model.addAttribute("white", broadbandResponse.getRaceWhite());
+			    model.addAttribute("black", broadbandResponse.getRaceBlack());
 			    model.addAttribute("hispanic", broadbandResponse.getRaceHispanic());	    
-			    model.addAttribute("asian", broadbandResponse.getRaceAsian());	 
+			    model.addAttribute("asian", broadbandResponse.getRaceAsian());
+			    
 
 			    	String searchedName = searchName.getCand_name();
 			    	String retrievedCID = ExcelCIDParser.lookupCandidateCID(searchedName); 

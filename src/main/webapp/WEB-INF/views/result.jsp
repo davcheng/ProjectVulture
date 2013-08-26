@@ -15,6 +15,8 @@
 <body>
 	<div id="wrapper">
 
+
+
 		<h1>Search Results for</h1>
 		<P>Candidate: ${cand_name}.</P>
 		<P>State: ${state}.</P>
@@ -40,12 +42,17 @@
 	
 		<h1>Broadband Data:</h1>		
 		    
-			<P>Age Between 5 to 19 ${ageFiveToNineteen}.</P>
-			<P>Age Greater Than 60= ${ageGreaterThanSixty}.</P>
-			<P>Percent White = ${white}.</P>
-			<P>Percent Asian= ${asian}.</P>
-			<P>Percent Hispanic = ${hispanic}.</P>
+			<P>Age Between 5 to 19: ${ageFiveToNineteen}.</P>
+			<P>Age Between 20 to 34: ${ageTwentyToThirtyFour}.</P>
+			<P>Age Between 35 to 59: ${ageThirtyFiveToFiftynine}.</P>
+			<P>Age Greater Than 60: ${ageGreaterThanSixty}.</P>			
+			<P>Percent White: ${white}.</P>
+			<P>Percent Black: ${black}.</P>
+			<P>Percent Hispanic: ${hispanic}.</P>
+			<P>Percent Asian: ${asian}.</P>
+
 			<P>Median Income = ${median_income}.</P>
+			<P>Income between 100k to 200k = ${incOnehundredToTwohundred}.</P>
 			<P>Income Greater than 200k = ${incGreaterThanTwohundred}.</P>
 			<P>Below Poverty = ${belowPoverty}.</P>
 			

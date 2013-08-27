@@ -51,10 +51,17 @@
 			<P>Percent Hispanic: ${hispanic}.</P>
 			<P>Percent Asian: ${asian}.</P>
 
-			<P>Median Income = ${median_income}.</P>
+			
+			<P>Below Poverty = ${belowPoverty}.</P>
+			<P>Income less than 25k = ${incZeroToTwentyfive}.</P>
+			<P>Income between 25k to 50k = ${incTwentyfivetToFifty}.</P>
+			<P>Income between 50k to 100k = ${incFiftyToOnehundred}.</P>
 			<P>Income between 100k to 200k = ${incOnehundredToTwohundred}.</P>
 			<P>Income Greater than 200k = ${incGreaterThanTwohundred}.</P>
-			<P>Below Poverty = ${belowPoverty}.</P>
+			<P>Median Income = ${median_income}.</P>
+
+			<P>Graduated HS = ${educationHighSchool}.</P>
+			<P>Bach or Greater = ${bachOrGreater}.</P>
 			
 	
 	

@@ -116,6 +116,9 @@ public class HomeController {
 			    model.addAttribute("bachOrGreater", broadbandResponse.getEducationBachelorOrGreater());
 			    
 			    model.addAttribute("belowPoverty", broadbandResponse.getIncomeBelowPoverty());
+			    model.addAttribute("incZeroToTwentyfive", broadbandResponse.getIncomeLessThan25());
+			    model.addAttribute("incTwentyfivetToFifty", broadbandResponse.getIncomeBetween25to50());
+			    model.addAttribute("incFiftyToOnehundred", broadbandResponse.getIncomeBetween50to100());		    
 			    model.addAttribute("incOnehundredToTwohundred", broadbandResponse.getIncomeBetween100to200());
 			    model.addAttribute("incGreaterThanTwohundred", broadbandResponse.getIncomeGreater200());
 			    model.addAttribute("median_income", broadbandResponse.getMedianIncome());

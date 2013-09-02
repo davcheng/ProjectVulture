@@ -1,8 +1,12 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
+
 <!DOCTYPE html>
 <head>
 	<meta charset="utf-8" />
 	<title> Vulture Project </title>
-	<link rel="stylesheet" href="css/style.css"/>
+	<c:url value="/resources/css/style.css" var="cssUrl" />
+	<link rel="stylesheet" href="${cssUrl}" type="text/css">
 	<meta http-equiv="X-UA-Compatible" content="IE=8">
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
 	<link rel="shortcut icon" href="img/favicon.ico">
@@ -21,13 +25,13 @@
 	<div class="body-header">		
 		<div class="logo-and-tabs">
 			<h1 class="logo">
-				<img name="Vulture Project" role="title" src="img/logo.png">
+				<img name="Vulture Project" role="title" src="${pageContext.request.contextPath}/resources/img/logo.png">
 			</h1>
 			<div id="login">
-				<p><a href="#">Log In</a></p>
+				<p><a href="${pageContext.request.contextPath}/login">Log In</a></p>
 			</div>
 			<div id="create-account">
-				<p><a href="#">Create Account</a></p>
+				<p><a href="${pageContext.request.contextPath}/sign-up">Create Account</a></p>
 			</div>
 		</div>
 	</div>
@@ -80,7 +84,7 @@
 
 	<footer>
 		<div class="copyright">
-		<p>Â© 2013 Vulture Project, All Rights Reserved.</p>
+		<p>© 2013 Vulture Project, All Rights Reserved.</p>
 		</div>
 	</footer>
 

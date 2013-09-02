@@ -21,18 +21,18 @@
 	<link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144x144.png"> 
 </head>
 
-<body onload='document.loginForm.emailInput.focus();'>
-
+<body>
+<!-- <body onload='document.loginForm.emailInput.focus();'> -->
 	<div class="body-header">		
 		<div class="logo-and-tabs">
 			<h1 class="logo">
-				<img name="Vulture Project" role="title" src="/resources/img/logo.png">
+				<img name="Vulture Project" role="title" src="${pageContext.request.contextPath}/resources/img/logo.png">
 			</h1>
 			<div id="login">
-				<p><a href="#">Log in</a></p>
+				<p><a href="${pageContext.request.contextPath}/login">Log in</a></p>
 			</div>
 			<div id="create-account">
-				<p><a href="#">Create Account</a></p>
+				<p><a href="${pageContext.request.contextPath}/sign-up">Create Account</a></p>
 			</div>
 		</div>
 	</div>
@@ -69,9 +69,9 @@
 	
 		<div id="formbox-login-tips">
 			<h2>Don't have an account?</h2>
-			<a href="/search">Sign up now!</a>
+			<a href="${pageContext.request.contextPath}/sign-up">Sign up now!</a>
 			<h2 class="pwd">Forget your password?</h2>
-			<a href="/register">Recover it here.</a>	
+			<a href="#">Recover it here.</a>	
 		</div>
 
 	</div>	

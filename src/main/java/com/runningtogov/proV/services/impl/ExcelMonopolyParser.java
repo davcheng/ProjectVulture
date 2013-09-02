@@ -19,17 +19,15 @@ public class ExcelMonopolyParser {
 	private static final Logger logger = LoggerFactory.getLogger(ExcelMonopolyParser.class);
 	private static String monopolyFileName;	
 
-	public static String lookUpCandidateParty(String representativeName) throws IOException{
-		String candParty = vLookUpData(representativeName, 4,4);
-		String Party = candParty.substring(0, candParty.indexOf("."));
-		System.out.println("Candidate party"+Party);
-		return Party;
+	public static String lookUpCandidateYearElected(String representativeName) throws IOException{
+		String year = vLookUpData(representativeName, 4,4);
+		String yearElected = year.substring(0, year.indexOf("."));
+		return yearElected;
 	}
 	
-	public static String lookUpCandidateYearElected(String representativeName) throws IOException{
-		String yearElected = vLookUpData(representativeName,3,4);
-		System.out.println("year elected"+yearElected);
-		return yearElected;
+	public static String lookUpCandidateParty(String representativeName) throws IOException{
+		String party = vLookUpData(representativeName,3,4);
+		return party;
 	}
 	
 	public static double lookUpCandidatePartisanship(String representativeName) throws IOException{

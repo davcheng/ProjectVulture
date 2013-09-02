@@ -33,6 +33,13 @@ public class LoginController {
 		return "login";
  
 	}
+	
+	@RequestMapping(value="/sign-up", method = RequestMethod.GET)
+	public String signUp(ModelMap model) {
+ 
+		return "sign-up";
+ 
+	}
  
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(ModelMap model) {

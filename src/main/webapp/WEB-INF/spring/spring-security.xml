@@ -10,11 +10,10 @@
      <http auto-config="true" use-expressions="true">
       <intercept-url pattern="/resources/**" access="permitAll()"/>
       <intercept-url pattern="/login*" access="permitAll()"/>
-      <intercept-url pattern="/register*" access="permitAll()"/>
       <intercept-url pattern="/**" access="isAuthenticated()"/>
       <form-login
         login-page="/login"
-        default-target-url="/home"
+        default-target-url="/search"
         login-processing-url="/j_spring_security_check.html"
         authentication-failure-url="/login_error"
         always-use-default-target="true"/>

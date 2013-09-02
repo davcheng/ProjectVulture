@@ -1,13 +1,8 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-
 <!DOCTYPE html>
-
 <head>
 	<meta charset="utf-8" />
 	<title> Vulture Project </title>
-	<c:url value="/resources/css/style.css" var="cssUrl" />
-	<link rel="stylesheet" href="${cssUrl}" type="text/css">
+	<link rel="stylesheet" href="css/style.css"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=8">
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
 	<link rel="shortcut icon" href="img/favicon.ico">
@@ -21,15 +16,15 @@
 	<link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144x144.png"> 
 </head>
 
-<body onload='document.loginForm.emailInput.focus();'>
+<body>
 
 	<div class="body-header">		
 		<div class="logo-and-tabs">
 			<h1 class="logo">
-				<img name="Vulture Project" role="title" src="/resources/img/logo.png">
+				<img name="Vulture Project" role="title" src="img/logo.png">
 			</h1>
 			<div id="login">
-				<p><a href="#">Log in</a></p>
+				<p><a href="#">Log In</a></p>
 			</div>
 			<div id="create-account">
 				<p><a href="#">Create Account</a></p>
@@ -40,45 +35,52 @@
 	<div class="main">
 
 		<div id="formbox-login" class="formbox">
-		<form name='loginForm' action="<c:url value='j_spring_security_check.html' />"
-	        method='POST'>
 					
-			<h1>Log in to Vulture Project</h1>
-			
-			<h2 class="errorMsg">${error}</h2>
-			
-			<h2>Email</h2>
-			<input id="emailInput" class="text" type="text" name="j_username" placeholder="type email here">
+			<h1>Create a new account</h1>
 				
+			<h2>Your Email</h2>
+			<input id="your-email-input" class="text" type="text">
+				
+			<h2>Confirm Email</h2>
+			<input id="email-confirm-input" class="text" type="text">
+
+			<h2>Zip Code</h2>
+			<input id="zip-input" class="text" type="text">
+
 			<h2>Password</h2>
-			<input id="passwordInput" class="text" type="text" name="j_password" placeholder="type password here">
+			<input id="password-input" class="text" type="text">
 			
+			<h2>Confirm Password</h2>
+			<input id="password-confirm-input" class="text" type="text">
+
 			<ul class="checkbox-and-button">
 
 				<li id="remember-me">
 					<input id="form-login-remember" class="checkbox" type="checkbox" value="T" tabindex="10" name="remember" defaultvalue="T" autocomplete="off">
-					<label for="form-login-remember"> Remember my email on this computer</label>
+					<label for="form-login-remember"> Yes, I agree to the <a href="#">Terms of Use</a></label>
 				<li id="log-in">
-					<input class="btn btn-primary signup-submit" type="submit" value="Log in" tabindex="11">
-	    		</li>
-	    	
+					<input class="btn btn-primary signup-submit" type="submit" value="Sign up" tabindex="11">
+				</li>
+
 			</ul>
-		</form>
-		
+
 		</div>	
 	
-		<div id="formbox-login-tips">
-			<h2>Don't have an account?</h2>
-			<a href="/search">Sign up now!</a>
-			<h2 class="pwd">Forget your password?</h2>
-			<a href="/register">Recover it here.</a>	
+		<div id="signup-formbox-login-tips">
+			<h2>Make your password more secure with these simple tips:</h2>
+			<ul>
+				<li>8 or more characters</li>
+		    	<li>At least 1 number</li>
+		    	<li>At least 1 symbol</li>
+		    	<li>An upper and lower case letter</li>	
+		    </ul>
 		</div>
 
 	</div>	
 
 	<footer>
 		<div class="copyright">
-		<p>© 2013 Vulture Project, All Rights Reserved.</p>
+		<p>Â© 2013 Vulture Project, All Rights Reserved.</p>
 		</div>
 	</footer>
 

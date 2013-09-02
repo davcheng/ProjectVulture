@@ -1,0 +1,323 @@
+
+@charset "UTF-8";
+
+/* CSS Document */
+
+/* 
+color palette
+#414141		BODY TXT
+#c2c2c2		35% GREY
+*/
+
+/*Fonts*/
+
+@font-face {
+font-family: 'Clarendon';
+src: url('../fonts/Clarendon.ttf'),
+     url('../fonts/Clarendon.eot'),
+     url('../fonts/Clarendon.woff')
+} 
+
+@font-face {
+font-family: 'ClarendonLt';
+src: url('../fonts/ClarendonLt.ttf'),
+     url('../fonts/ClarendonLt.eot'),
+     url('../fonts/ClarendonLt.woff')
+} 
+
+@font-face {
+font-family: 'EngraversGothic';
+src: url('../fonts/EngraversGothic.ttf'),
+     url('../fonts/EngraversGothic.eot'),
+     url('../fonts/EngraversGothic.woff')
+} 
+
+
+/* Global styles -----------------------------------------------------------------------------------------------------------*/
+
+/*limited reset*/
+html, body, div, section, article, aside, header, hgroup, footer, nav, h1, h2, h3, h4, h5, h6, p, blockquote, address, time, span, em, strong, img, ol, ul, li, figure, canvas, video, th, td, tr {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align:baseline;
+	font: inherit;
+}
+
+/*html5 display rule*/
+address, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, nav, menu, nav, section, summary {
+	display: block;
+}
+/* micro-clearfix (http://nicolasgallagher.com/micro-clearfix-hack)/*/
+.cf:before, .cf:after {
+	content:"";
+	display:table;
+}
+
+.cf:after {
+	clear:both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.cf {
+	zoom:1;
+}
+
+a {
+	text-decoration: none;
+
+}
+
+
+html {
+	background-image: -moz-linear-gradient(center top, #D1EEEE, #F2F9F6);
+	background-repeat: no-repeat;
+}
+
+body {
+	font-family: Helvetica Neue;
+}
+
+.body-header {
+	width: 690px;
+	padding-top: 3em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.logo {
+	float: left;
+	width: 25%;
+}
+
+#create-account {
+	float: right;
+	width: 18%;
+	margin-top: 12px;
+	color: #414141;	
+}
+
+#login {
+	float: right;
+	width: 7%;
+	margin-top: 12px;
+	padding-left: .6em;
+	text-align: right;
+	border-left: 1px solid #c2c2c2;
+	font-weight: bold;
+	color: #414141;	
+}
+
+.logo-and-tabs a {
+	color: #414141;
+}
+
+.main {
+	width: 690px;
+	margin-left: auto;
+	margin-right: auto;
+	box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.2);
+	background: #fff;
+}
+
+#formbox-login h1 {
+	font-size: 1.6em;
+	font-family: Helvetica Neue;
+	font-weight: bold;
+	color: #414141;	
+	margin-bottom: 51px;
+	position: relative;
+}
+
+.formbox h2 {
+	font-size: .9em;
+	font-weight: bold;
+	color: #414141;	
+	margin-bottom: 6px;
+	margin-top: 24px;
+}
+
+.formbox {
+	margin: 43px 35px 50px 50px;
+	padding-top: 48px;
+}
+
+#zip-input {
+		width: 90px;
+}
+
+.password p {
+	font-size: .9em;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+
+.errorMsg {
+	font-size: .9em;
+	font-weight: bold;
+	color: red;	
+}
+
+.text {
+	font-size: 1em;
+	width: 290px;
+	height: 24px;
+    text-align: left;
+    color: #666666;
+}
+
+#log-in {
+    list-style-type: none;
+    margin-top: 24px;
+}
+
+#remember-me {
+	list-style-type: none;
+	font-size: .8em;
+	color: #414141;
+	margin-top: 39px;
+}
+
+.checkbox-and-button a {
+	color: #006EA4;
+}
+
+.btn {
+	background-color: #FBB450;
+    background-image: -moz-linear-gradient(center top , #FBB450, #F89406);
+    border-color: #F89406 #F89406 #AD6704;
+    color: #FFFFFF;
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+	border-image: none;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 30px;
+    padding: 4px 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.btn:hover {
+    background-color: #FBB450;
+    background-image: -moz-linear-gradient(center top, #F89406, #F89406);
+    text-decoration: none;
+}
+
+#formbox-login {
+	width: 50%;
+}
+
+#formbox-login-tips {
+	width: 175px;
+	height: 160px;
+	position: absolute;
+    color: #8B8078;
+    margin-top: -309px;
+    margin-left: 448px;
+   	padding-left: 1em;
+	text-align: left;
+	border-left: 1px solid #c2c2c2;
+}
+
+#signup-formbox-login-tips {
+	width: 175px;
+	height: 130px;
+	position: absolute;
+    color: #666666;
+    font-size: .8em;
+    line-height: 1.4em;
+    margin-top: -569px;
+    margin-left: 418px;
+   	padding-left: 1em;
+	text-align: left;
+	border-left: 1px solid #c2c2c2;
+}
+
+#signup-formbox-login-tips ul {
+	font-size: .9em;
+	padding-left: 1.2em;
+	margin-top: 5px;
+	line-height: 1.8em;	
+    color: #666666;
+}
+
+#formbox-login-tips .pwd {
+	margin-top: 18px;
+}
+
+#formbox-login-tips a {
+	font-size: .75em;
+	color: #006EA4;
+}
+
+.footer {
+	clear: both;
+}
+
+.copyright {
+	text-align: center;
+	font-size: .8em;
+	color: #414141;
+	margin-top: -30px;
+	margin-bottom: 20px;
+}
+
+/* Mobile Styles -----------------------------------------------------------------------------------------------------------*/
+@media only screen and (max-width:460px) {
+
+/*disable text sizing on orientation change*/
+html, body, div, section, article, aside, header, hgroup, footer, nav, h1, h2, h3, h4, h5, h6, p, blockquote, address, time, span, em, strong, img, ol, ul, li, figure, canvas, video, th, td, tr {
+	-webkit-text-size-adjust:none;
+}
+
+.header, .footerWrapper, .copyright, #img-container {
+	width: 90%;
+	max-width: 630px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+}
+
+
+
+/* Tablet Styles -----------------------------------------------------------------------------------------------------------*/
+@media only screen and (min-width:460px) and (max-width:750px) {
+
+.header, .footerWrapper, .copyright, #img-container {
+	width: 90%;
+	max-width: 630px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+}
+
+
+/* Desktop Styles -----------------------------------------------------------------------------------------------------------*/
+@media only screen and (min-width:750px) {
+
+.header, .body-header .main p, .footerWrapper, .copyright {
+	width: 100%;
+	max-width: 690px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+
+}
